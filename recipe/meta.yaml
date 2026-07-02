@@ -5,6 +5,10 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
+context:
+  python_min: "3.11"
+  python_max: "3.14"
+
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/resourcecode-{{ version }}.tar.gz
   sha256: 6929678dba2825a386ce3a7bf242d50abe846b31bc0876277c1909c7cabcbd59
@@ -16,11 +20,11 @@ build:
 
 requirements:
   host:
-    - python 3.11
+    - python ${{ python_min }}.*
     - pip
     - setuptools
   run:
-    - python >=3.10,<3.13
+    - python >={{ python_min }},<{{ python_max }}
     - pandas >=2.2,<3.0
     - requests >=2.31,<3.0
     - numpy >=2.0,<3.0.0
