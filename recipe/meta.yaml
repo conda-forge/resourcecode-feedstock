@@ -1,5 +1,7 @@
 {% set name = "resourcecode" %}
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
+{% set python_min = "3.11" %}
+{% set python_max = "3.14" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/resourcecode-{{ version }}.tar.gz
-  sha256: 5681dc3a02de5375fead8701b55fdba55d458453fb4e3d17dc2a35f7ef6aece2
+  sha256: 6929678dba2825a386ce3a7bf242d50abe846b31bc0876277c1909c7cabcbd59
 
 build:
   noarch: python
@@ -16,11 +18,11 @@ build:
 
 requirements:
   host:
-    - python 3.11
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.10,<3.13
+    - python >={{ python_min }},<{{ python_max }}
     - pandas >=2.2,<3.0
     - requests >=2.31,<3.0
     - numpy >=2.0,<3.0.0
